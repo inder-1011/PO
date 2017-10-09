@@ -1,0 +1,19 @@
+
+<body ng-app="LoginModule" ng-controller="UploadController as upctrl">
+	<div class="container">
+	<form class="login-form" ng-submit="upctrl.postForm()">
+			<h3 align="center">
+				<font face="verdana" size="6" align="center">PartnerOnboard</font>
+			</h3>
+
+			<a href="../css/Details.csv" class="btn btn-lg btn-primary download="partnerUpload.csv">Download csv Format</a><br><br>
+			
+			<input type="file" name="partnerFile" accept=".csv"  file-model="myFile" /> <br><br>
+					
+				<button class="btn btn-lg btn-primary btn-block" type="submit"
+					ng-click="uploadFile()">NEXT</button>
+		</form>
+	</div>
+	
+
+</body>

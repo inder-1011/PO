@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+	  http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans.xsd
+	  http://www.springframework.org/schema/util 
+	  http://www.springframework.org/schema/util/spring-util-3.2.xsd
+	  http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context-3.2.xsd
+   	  http://cxf.apache.org/jaxrs 
+   	  http://cxf.apache.org/schemas/jaxrs.xsd
+   	  http://cxf.apache.org/jaxws 
+   	  http://cxf.apache.org/schemas/jaxws.xsd
+      http://www.springframework.org/schema/security 
+      http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<context:component-scan base-package="com.pb.td.po" />
+	<context:property-placeholder location="classpath:database.properties" />
+	<mvc:annotation-driven />
+	<security:global-method-security
+		pre-post-annotations="enabled" />
+	<util:properties id="applicationProp" location="classpath:application.properties" />
+	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+		<constructor-arg>
+			<list>
+				<security:filter-chain request-matcher-ref="onBoardingRequestMatcher"
+					filters="none" />
+				<security:filter-chain pattern="/services/V1/partnerService/**"
+					filters="securityContextPersistenceFilter,
+							basicAuthenticationFilter ,
+			         		exceptionTranslationFilter" />
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean id="securityContextPersistenceFilter"
+		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+		<constructor-arg>
+			<bean
+				class="org.springframework.security.web.context.NullSecurityContextRepository" />
+		</constructor-arg>
+	</bean>
+	<bean id="basicAuthenticationFilter"
+		class="org.springframework.security.web.authentication.www.BasicAuthenticationFilter">
+		<constructor-arg name="authenticationManager" ref="authenticationManager" />
+		<constructor-arg name="authenticationEntryPoint"
+			ref="onBoardingAuthenticationEntryPoint" />
+	</bean>
+	<bean id="exceptionTranslationFilter"
+		class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<constructor-arg name="authenticationEntryPoint"
+			ref="onBoardingAuthenticationEntryPoint" />
+		<constructor-arg>
+			<bean
+				class="org.springframework.security.web.savedrequest.NullRequestCache" />
+		</constructor-arg>
+		<property name="accessDeniedHandler" ref="onBoardingAccessDeniedHandler" />
+	</bean>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="onBoardingBasicAuthenticationProvider" />
+	</security:authentication-manager>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="checkWriteOperations" value="false"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.pb.td.po.domain.User</value>
+				<value>com.pb.td.po.domain.Partner</value>
+				<value>com.pb.td.po.domain.FileFormat</value>
+				<value>com.pb.td.po.domain.FileTransferDetail</value>
+				<value>com.pb.td.po.domain.Services</value>
+				<value>com.pb.td.po.domain.QueueServers</value>
+				<value>com.pb.td.po.domain.StaticParameter</value>
+				<value>com.pb.td.po.domain.CarrierConfig</value>
+				<value>com.pb.td.po.domain.TrackingNumberValidation</value>
+				<value>com.pb.td.po.domain.FileFormatId</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.cache.use_structured_entries">false</prop>
+			</props>
+		</property>
+
+	</bean>
+	
+	
+	 <bean id="apiDaoImpl1" class="com.pb.td.po.dao.ApiDaoImpl1">
+	  <property name="sessionFactory" ref="sessionFactory" />
+    </bean> 
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+
+	<jaxrs:server id="partnerService" address="/v1/partnerService">
+		<jaxrs:providers>
+			<ref bean="jacksonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="userManagementServiceImpl" />
+		</jaxrs:serviceBeans>
+	</jaxrs:server>
+
+	<jaxws:endpoint id="partnerServiceSOAP" 
+	implementor="com.pb.td.po.services.UserManagementServiceImpl" address="/v1/partnerService/" />
+</beans>

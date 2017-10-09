@@ -1,0 +1,19 @@
+<div ng-controller="QueueServerController as queueCtrl">
+<div ng-show="loader.loading">Loading</div>
+	<form class="login-form"   ng-submit="queueCtrl.postForm()">
+		<h3 align="center">
+			<font face="verdana" size="6">{{IsAdd ? 'Add Queue Servers' : 'Edit Queue Servers'}} </font>
+		</h3>
+		<div class="form-group">
+		<label for="serverName">Server Name *</label> 
+		<input type="text" id="serverName" ng-disabled="!IsAdd" class="form-control" placeholder="ServerName" ng-disabled="queueCtrl.inputData.serverName!='undefined'"  ng-model="queueCtrl.inputData.serverName" required maxlength="50">
+		</div>
+		
+<div class="form-group">
+		<label for="queueServer" >Queue Server *</label> 
+		<input type="text" id="queueServer" class="form-control" ng-model="queueCtrl.inputData.queueServer" ng-pattern="/[a-zA-Z0-9^ ]/" ng-trim="false"  placeholder="Queue Server" required maxlength="50">	
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">save</button>
+            <a id="back" class="btn btn-lg btn-primary btn-block" ng-href="#/ManageConfig/Queue">Back</a>
+	</form>
+</div>

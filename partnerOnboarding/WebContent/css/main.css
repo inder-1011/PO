@@ -1,0 +1,311 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    font:20px
+    padding-bottom: 20px;
+}
+
+.list-group {
+  overflow:scroll;
+  height: 20px;
+}
+
+.login-form {
+	max-width: 300px;
+	margin: auto;
+	font-size: 15px;
+}
+
+#scrollArea {
+position: relative;
+align:center;
+}
+
+#bottom {
+        position: absolute;
+        align:center;
+        border: 5px solid gray;
+        padding: 5px;
+        background: white;
+        width: 600px;
+        height: 300px;
+        overflow-y: scroll;
+}
+
+
+#inputUsername {
+	margin-bottom: 20px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+#Partner{
+	margin-bottom: 20px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+#partnerId {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#inputPassword {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#inputRole {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#columnName {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#columnOrder {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#alias {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#format {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+/* #required {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+} */
+#userpartner {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#value {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#mask {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#countryCode {
+	margin-bottom: 10px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+#carrierCode {
+	margin-bottom: 10px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+#name {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#partnerCode {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#header {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#fileExt {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#fileNamePattern {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#serverName {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#queueServer {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#delimiter {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#container div{
+  display:inline-block;
+	width: 500px;
+  margin: auto;
+
+}
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+header {
+	color:white;
+	background: #3C54A4;
+    height:49px;	
+	}
+footer{
+ position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#EAEAEA;
+}
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+margin-right: 30px;
+}
+#blankFile {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#maxSize {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#frequency {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#services {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#active {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+#password {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+
+#reportScan {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+		
+		
+#code {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+		
+		
+#serviceType {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+		
+		
+#sdTime {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+		
+		#edTime {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+
+#userName {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+#protocol {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+#port {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+#host {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+		
+ */
+/* IE 6 */
+* html #footer {
+   position:absolute;
+   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = 
+
+document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}
+
+		
+.inner
+{
+    display: inline-block;
+}
+#container div{
+  display:inline-block;
+	width: 500px;
+  margin: auto;
+
+}
+#outer
+{
+    width:100%;/*  */
+    text-align: center;
+}
+
+

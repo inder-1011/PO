@@ -1,0 +1,90 @@
+
+    <div class="container" style="margin-top: 25px" ng-controller="PartnerInfoController as postCtrl">
+      <form class="login-form" ng-submit="postCtrl.postForm()">
+      <!--  <h3 align="center">
+        <a href="#/Upload" class="btn btn-lg btn-danger btn-block" type="submit">Save Partner Using CSV File</a>
+                                                                               <br>
+       </h3>-->
+       
+       <label for="partnerId" class="sr-only">PartnerId</label>
+        <input type="text" id="partnerId" class="form-control" placeholder="partnerId" required ng-model="postCtrl.inputData.partnerId"  required numbers-only="numbers-only">
+       
+       
+       	<label for="name" class="sr-only">PartnerCode</label>
+        <input type="text" disallowSpaces id="partnerCode" class="form-control" placeholder="PartnerCode" required ng-model="postCtrl.inputData.partnerCode" required numbers-only="numbers-only">
+        
+        <label for="countryCode" class="sr-only">Code</label>
+        <select id="countryCode" class="form-control" required ng-model="selectedCountryCode">
+        	<option value="" default selected disabled="disabled">Country Code</option>
+			<option ng-value="2" value="2">ISO2</option>
+			<option ng-value="3" value="3">ISO3</option>
+			<option ng-value="4" value="3">ISO4</option>
+		</select>
+		
+        
+		<label for="name" class="sr-only">Name</label>
+        <input type="text" id="name" class="form-control" placeholder="Name" required ng-model="postCtrl.inputData.name" required>
+		
+           <label for="reportScan" class="sr-only">Report Scan Type</label>
+          <select id="reportScan" ng-init="SummaryAndDetails" class="form-control" required ng-model="postCtrl.inputData.reportScan">
+        	<option value="" default selected disabled="disabled">Report Scan</option>
+			<option ng-value="SummaryOnly" >SummaryOnly</option>
+			<option ng-value="SummaryAndMostRecentDetail">SummaryAndMostRecentDetail</option>
+			<option ng-value="SummaryAndDetails" >SummaryAndDetails</option>
+		</select>
+          
+<!--	<label for="fileExt" class="sr-only">fileExt</label>-->
+		<!--<select ng-hide="true" id="fileExt" ng-model="postCtrl.inputData.fileExt">
+			<option value=""  selected disabled="disabled">file Extension</option>
+			<option ng-value="csv" value="csv">csv</option>
+			<option ng-value="txt" value="txt">txt</option>
+		</select>-->
+
+<!--		<label for="fileNamePattern" class="sr-only">File Name Pattern</label>-->
+<!--        <input type="hidden" id="fileNamePattern" ng-model="postCtrl.inputData.fileNamePattern" >-->
+		
+<!--				<label for="delimiter" class="sr-only">delimiter</label>-->
+<!--
+		<select ng-hide="true" id="delimiter"  name="delimiter"   ng-model="postCtrl.inputData.delimiter">
+			<option value=""  selected disabled="disabled">delimiter</option>
+			<option ng-value="," value=",">,</option>
+			<option ng-value="." value=".">.</option>
+			<option ng-value="-" value="-">-</option>
+			<option ng-value="~" value="~">~</option>
+		</select>
+-->
+			
+
+<!--		<label for="header" class="sr-only">header</label>-->
+<!--
+		<select ng-hide="true" id="header"  name="head"   ng-model="postCtrl.inputData.header">
+			<option value=""  selected disabled="disabled">header</option>
+			<option ng-value="true" value="true">true</option>
+			<option ng-value="false" value="false">false</option>
+		</select>
+-->
+
+
+<!--		<label for="blankFile" >blankFile</label>-->
+<!--
+		<select ng-hide="true" id="blankFile"  ng-model="postCtrl.inputData.blankFile">
+			<option value=""  selected disabled="disabled">blank file</option>
+			<option ng-value="true" value="true">true</option>
+			<option ng-value="false" value="false">false</option>
+		</select>
+-->
+
+
+<!--		<label for="maxSize"  >maxSize</label>-->
+<!--        <input type="hidden" id="maxSize" ng-model="postCtrl.inputData.maxSize"  />-->
+		
+<!--		 <label for="frequency" >frequency</label>-->
+<!--        <input type="hidden" id="frequency"  ng-model="postCtrl.inputData.frequency"  />-->
+		
+		
+     <button class="btn btn-lg btn-primary btn-block" type="submit"
+					ng-click="redirect()">Save</button>
+		
+      </form>
+    </div> 
+	

@@ -1,0 +1,48 @@
+<div ng-controller="StaticParameterController as staticCtrl">
+<div ng-show="loader.loading">Loading</div>
+	<form class="login-form"   ng-submit="staticCtrl.postForm()">
+		<h3 align="center">
+			<font face="verdana" size="6">{{IsAdd ? 'Add Static Parameter' : 'Edit Static Parameter'}} </font>
+		</h3>
+	
+		<div class="form-group">
+		<label for="partnerId" >Partner Id *</label> 
+		  <select ng-disabled="!IsAdd" id="partnerId"  class="form-control" required ng-model="selectedPartner" ng-change="staticCtrl.PartnerChanged()"
+                  
+                  ng-options="partner.partnerId as partner.name + ' - ' + partner.partnerId  for partner in Partners" >
+			<option value="" selected disabled>Partners</option>
+		<!--  <option  ng-repeat="partner in Partners" ng-value="{{partner.partnerId}}">{{partner.name}}</option>-->
+		  </select>
+		  </div>
+		  
+		  <div ng-show="Users!=null" class="form-group">
+			<label for="userName" >userName</label> 
+			  <select ng-disabled="!IsAdd" id="userName"  class="form-control" required ng-model="selectedUser" ng-change="staticCtrl.UserChanged()">
+				<option value="" default selected disabled="disabled">Users</option>
+			  <option  ng-repeat="user in Users" ng-value="{{user.userName}}">{{user.userName}}</option>
+			  </select>
+			  </div>
+			  
+			  <div ng-show="Carriers!=null"  class="form-group">
+				<label for="carrierCode" >CarrierCode</label> 
+				  <select ng-disabled="!IsAdd" id="carrierCode"  class="form-control" required ng-model="selectedCarrier" ng-change="staticCtrl.CarrierChanged()">
+					<option value="" default selected disabled="disabled">Carriers</option>
+				  <option  ng-repeat="carrier in Carriers" ng-value="{{carrier.code}}">{{carrier.code}}</option>
+				  </select>
+				  </div>
+			  
+		  <div ng-show="staticCtrl.inputData!=null" class="form-group">
+		<div class="form-group">
+		<label for="name" >Name *</label> 
+		<input ng-disabled="!IsAdd" type="text" id="name" class="form-control" placeholder="name" ng-model="staticCtrl.inputData.name" required maxlength="50">	
+		</div>
+		
+		<div class="form-group">
+		<label for="value" >Value *</label> 
+		<input type="text" id="value" class="form-control" placeholder="value" ng-model="staticCtrl.inputData.value" required maxlength="100">	
+		</div>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">save</button>
+         <a id="back" class="btn btn-lg btn-primary btn-block" ng-href="#/ManageConfig/Static">Back</a>
+	</form>
+</div>

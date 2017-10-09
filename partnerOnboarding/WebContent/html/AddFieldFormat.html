@@ -1,0 +1,104 @@
+<style>
+td, tr {
+	text-align: center;
+}
+
+th {
+	text-align: center;
+	background: #3C54A4;
+	color: white;
+}
+
+.thead {
+	height: 35px;
+	padding: 5px 10px;
+}
+
+.table {
+	align: center;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	border-collapse: collapse;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	background: #ffffff;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+</style>
+
+<div  class="container" >
+<form class="login-form"  ng-controller="AddFieldFormatController as affctrl">
+
+  <h3 align="center">
+			<font face="verdana" size="6">Create Partner Field Formats</font>
+		</h3>
+    
+<label for="partnerId" style="margin-top: 20px;">Partner *</label> 
+  <select   id="partnerId" class="form-control" required ng-model="affctrl.inputData.partnerId" ng-change="affctrl.PartnerChanged()">
+	<option value="" default selected disabled="disabled">Partners</option>
+  <option  ng-repeat="partner in Partners | orderBy:'name' " ng-value="{{partner.partnerId}}">{{partner.name +" - "+ partner.partnerId}}</option>
+  </select>
+  
+
+<div class="form-group">
+  <label for="columnName" >ColumnName *</label> 
+	<select id="columnName" class="form-control" required ng-model="affctrl.inputData.columnName">
+		<option value="" default selected disabled="disabled">columnName</option>
+		<option ng-value="DeliveryDate">DeliveryDate</option>
+		<option ng-value="DeliveryTime">DeliveryTime</option>
+        <option ng-value="EstimatedDeliverydate">EstimatedDeliverydate</option>
+		<option ng-value="EstimatedDeliverytime">EstimatedDeliverytime</option>
+		<option ng-value="EventDate">EventDate</option>
+		<option ng-value="EventTime">EventTime</option>
+		</select>
+		
+		<div class="form-group">
+		<label for="alias" >Alias *</label>
+        <input type="text" id="alias" class="form-control" placeholder="alias" required ng-model="affctrl.inputData.alias" required maxlength="20">
+        </div>
+        
+    
+        <div class="form-group">
+        <label for="format" >Format *</label>
+      <!--  <input type="text" id="format" class="form-control" placeholder="format" ng-change=""  required ng-model="affctrl.inputData.format" required maxlength="50">-->
+       <!-- <select id="format" class="form-control" required ng-model="affctrl.selectedFormat" ng-options="format.id as format.value for format in affctrl.formats">
+		<option value="" default selected disabled="disabled">Format</option>
+		<option ng-value="string">string</option>
+		   	<option ng-value="dd/MM/yyyy">dd/MM/yyyy</option>
+		 <option ng-value="dd/MM/yyyy hh\:mm\:ss">dd/MM/yyyy hh:mm:ss</option>
+		<option ng-value="@''">hh\:mm\:ss</option>
+	 <option  ng-repeat="format.id as format.value for format in affctrl.formats" ng-value="{{format.id}}">{{format.value}}</option>
+		</select>-->
+            
+            <select id="format" class="form-control" required ng-model="affctrl.selectedFormat">
+		<option value="" default selected disabled="disabled">Format</option>
+		 <option  ng-repeat="format in affctrl.formats" ng-value="{{format.id}}">{{format.value}}</option>
+		</select>
+            
+            
+        </div>
+    
+        <div class="form-group">
+    	 <div class="controls form-inline">
+            <label for="required" >Required field *</label>
+    	<!-- <input type="checkbox" data-off-icon-cls="gluphicon-thumbs-down" data-on-icon-cls="gluphicon-thumbs-up" required ng-model="affctrl.inputData.required" placeholder="required"> -->
+            
+        <input class="checkbox-primary" type="checkbox" id="required"  placeholder="required"  ng-true-value="1" ng-false-value="0"  ng-model="affctrl.inputData.required" style="width : 7%; margin-left : 10px : background-color : #428bca">
+        </div>
+             </div>
+        
+        <div class="form-group" style="margin-bottom : 20px">
+             <div class="controls form-inline">
+    	<label style="margin-right : 10px" for="columnOrder" >Column Order *</label>
+    <!--    <input type="text" id="columnOrder" class="form-control" placeholder="columnOrder" required ng-model="affctrl.inputData.columnOrder" required numbers-only="numbers-only">-->
+    <span min="1" max="29" ng-model="value" stepper ></span>
+        </div>
+             </div>
+        
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="affctrl.saveFieldFormat()">Save</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="affctrl.saveFieldFormatandExit()">Save And Exit</button>
+    </div>
+    </form>
+    </div>

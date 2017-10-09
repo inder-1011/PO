@@ -1,0 +1,119 @@
+<style>
+td, tr {
+	text-align: center;
+    vertical-align : center;
+}
+
+th {
+	text-align: center;
+	background: #3C54A4;
+	color: white;
+     vertical-align : center;
+}
+
+.thead {
+	height: 35px;
+	padding: 5px 10px;
+     vertical-align : center;
+}
+
+.table {
+	align: left;
+	width: 100%;
+	margin-left: 10%;
+	margin-right: 10%;
+	border-collapse: collapse;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	background: #ffffff;
+	margin-top: 100px;
+	margin-bottom: 100px;
+    overflow-x: auto;
+  overflow-y: hidden;
+    
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+</style>
+<div style="margin-top: 50px"  ng-controller="FieldFormatListController as fflctrl">
+<div class="container">
+
+<h3 align="center">
+			<font face="verdana" size="6">Edit Partner Field Formats</font>
+		</h3>
+ 
+ <div class="form-group">
+<label for="partnerId" >Partner *</label> 
+  <select style="width: 150px;margin:20px"   id="partnerId"  required ng-model="selectedPartner" ng-change="fflctrl.PartnerChanged()">
+	<option value="" default selected disabled="disabled">Partners</option>
+  <option  ng-repeat="partner in Partners" ng-value="{{partner.partnerId}}">{{partner.name}}</option>
+  </select>
+  </div>
+  
+  
+  
+  
+	<table class="table table-striped table-bordered" ng-if="model.fieldFormats">
+		<thead>
+			<tr>
+				<th style="width: 15%">Column Name</th>
+				<th style="width: 10%">Alias</th>
+				<th style="width: 5%">Required</th>
+				<th style="width: 40%">Format</th>
+				<th style="width: 10%">ColumnOrder</th>
+				<th style="width: 20%">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="fieldFormat in model.fieldFormats"  ng-include="fflctrl.getTemplate(fieldFormat)" >
+		
+			
+			</tr>
+		</tbody>
+		
+		<button type="button" class="btn btn-primary btn-sm" ng-click="fflctrl.addFieldFormats()">Add</button>
+       
+	</table>
+
+	 <script type="text/ng-template" id="display">
+	 <td>{{fieldFormat.columnName}}</td>
+	 <td>{{fieldFormat.alias}}</td>
+	 <td>{{fieldFormat.required}}</td>
+	 <td>{{fieldFormat.format.value}}</td>
+	 <td disabled="disabled">{{fieldFormat.columnOrder}}</td>
+    
+     <td>
+         <button ng-click="fflctrl.editFieldFormats(fieldFormat)">Edit</button>
+     </td>
+ </script>
+ <script type="text/ng-template" id="edit">
+     <td><input ng-disabled="true" type="text" ng-model="model.selected.columnName" /></td>
+     <td><input type="text" ng-model="model.selected.alias" /></td>
+     <td><input class="checkbox-primary" type="checkbox" ng-true-value="1" ng-false-value="0"  ng-model="model.selected.required" style="width : 40%; margin-left : 10px : background-color : #428bca"/>
+     
+     <!-- <input class="checkbox-primary" type="checkbox" id="required"    ng-true-value="1" ng-false-value="0"  ng-model="model.selected.required" style="width : 7%; margin-left : 10px : background-color : #428bca">-->
+     </td>
+     <td><!--<input type="text" ng-model="model.selected.format" />-->
+         
+          <select id="format"class="form-control" required ng-model="model.selected.format.id" ng-options="format.id as format.value for format in fflctrl.formats" >
+        <!--    <option  ng-repeat="countryCode in countryCodeList" ng-value="{{countryCode.id}}">{{countryCode.name}}</option>-->
+        <!--  <option ng-value="{{selectedCountryCode.id}}" selected  disabled="disabled">{{selectedCountryCode.name}} </option>-->
+		</select>
+         
+         <!--
+      <select id="format" class="form-control" required ng-model="model.selected.format.id">
+		<option value="" default selected disabled="disabled">Format</option>
+	 <option  ng-repeat="format in fflctrl.formats" ng-value="{{format.id}}">{{format.value}}</option>
+		</select>-->
+         
+     </td>
+     <td><!--<input type="text" ng-model="model.selected.columnOrder" />-->
+     <span min="1" max="29"  ng-model="model.selected.columnOrder" stepper></span>
+     </td>
+     
+     <td>
+         <button ng-click="fflctrl.saveFieldFormats($index)">Save</button>
+         <button ng-click="fflctrl.reset()">Cancel</button>
+     </td>
+ </script>
+ </div>
+
+</div>

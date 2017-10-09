@@ -1,0 +1,178 @@
+	<!-- 	<div ng-controller="QueueController as queueCtrl">
+<div ng-show="loader.loading">Loading</div>
+	<form class="login-form"   ng-submit="postCtrl.postForm()">
+		<h3 align="center"> -->
+<style>
+td, tr {
+	text-align: center;
+}
+
+th {
+	text-align: center;
+	background: #3C54A4;
+	color: white;
+}
+
+.thead {
+	height: 35px;
+	padding: 5px 10px;
+}
+
+.table {
+	align: center;
+	width: 1000%;
+	border-collapse: collapse;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	background: #ffffff;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+ </style>
+
+<div class="container" style="margin-top: 50px" ng-controller="ManageConfigController as confgCtrl">
+ <div >
+    <label class="sr-only">Manage Comfiguration</label>
+		<select name="type" ng-model="confgType" ng-dropdown required ng-change="changeme()">
+		<option value="" default selected disabled="disabled">Manage Configuration</option>
+		<option ng-option value="Carrier">Carrier Configuration</option>
+			<option ng-option value="Static">Static Parameter</option>
+			<option ng-option value="Queue">Queue Servers</option>
+			<option ng-option value="Tracking">Tracking Number Validation</option>
+			
+		</select>
+
+   <div style="display:inline-block" ng-if="confgType == 'Static'" ng-controller="StaticParameterController as spctrl" align="right">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Partner Id</th>
+				<th>User Name</th>
+				<th>Carrier Code</th>
+				<th>Name</th>
+				<th>Value</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="data in paramters | orderBy:['partnerId','userName','carrierCode','name']" style="height: 35px">
+				<td>{{data.partnerId}}</td>
+				<td>{{data.userName}}</td>
+				<td>{{data.carrierCode}}</td>
+				<td>{{data.name}}</td>
+				<td>{{data.value}}</td>
+				<td>
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-edit"
+						ng-click="editStaticParameter(data.partnerId,data.userName,data.carrierCode)"></button>
+<!--
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-trash"
+						ng-click="deleteStatic(data.partnerId);"></button>
+-->
+				</td>
+			</tr>
+		</tbody>
+		<div>
+		
+		<button type="button" class="btn btn-primary btn-sm" ng-click="addStaticParameter()">Add</button></div>
+	</table>
+</div>
+
+   
+  <div style="display:inline-block" ng-if="confgType == 'Queue'" ng-controller="QueueServerController as queueCtrl" align="right">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Server Name</th>
+				<th>Queue Server</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="data in queueServer | orderBy: 'serverName'" style="height: 35px">
+				<td>{{data.serverName}}</td>
+				<td>{{data.queueServer}}</td>
+				<td>
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-edit"
+						ng-click="editQueueServer(data.serverName)"></button>
+<!--
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-trash"
+						ng-click="deleteQueueServer(data.serverName);"></button>
+-->
+				</td>
+			</tr>
+		</tbody>
+		<div>
+		
+		<button type="button" class="btn btn-primary btn-sm" ng-click="addQueueServer()">Add</button></div>
+	</table>
+</div>
+<div  style="display:inline-block" ng-if="confgType == 'Tracking'" ng-controller="TrackingController as trackingCtrl" align="right">
+	<table class="table table-bordered" >
+		<thead>
+			<tr>
+				<th>Carrier Code</th>
+				<th>Mask</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="data in tracking | orderBy:'carrierCode'" style="height: 35px; white-space: nowrap">
+				<td>{{data.carrierCode}}</td>
+				<td>{{data.mask}}</td>
+				<td>
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-edit"
+						ng-click="editTracking(data.carrierCode,data.mask)"></button>
+<!--
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-trash"
+						ng-click="deleteTracking(data.carrierCode);"></button>
+-->
+				</td>
+			</tr>
+		</tbody>
+<div> 
+		
+		<button type="button" class="btn btn-primary btn-sm" ng-click="addTracking(data.mask)">Add</button></div>	</table>
+</div>
+
+<div style="display:inline-block" ng-if="confgType == 'Carrier'" ng-controller="CarrierConfigController as carrierCtrl" align="right">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Code</th>
+				<th>Name</th>
+				<th>Service Type</th>
+				<th>Start Down Time</th>
+				<th>End Down Time</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="data in carrier | orderBy:['code','name','serviceType']" style="height: 35px">
+				<td>{{data.code}}</td>
+				<td>{{data.name}}</td>
+				<td>{{data.serviceType}}</td>
+				<td> {{data.startDownTime | date : carrierCtrl.dateTimeFormat }}</td>
+				<td>{{data.endDownTime | date : carrierCtrl.dateTimeFormat }}  </td>
+				<td>
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-edit"
+						ng-click="editCarrierConfig(data.code)"></button>
+<!--
+					<button type="button" id="updateButton"
+						class="glyphicon glyphicon-trash"
+						ng-click="deleteCarrierConfig(data.code);"></button>
+-->
+				</td>
+			</tr>
+		</tbody>
+<div> 
+		
+		<button type="button" class="btn btn-primary btn-sm" ng-click="addCarrierConfig()">Add</button></div>	</table>
+</div>
+
+

@@ -1,0 +1,28 @@
+<div ng-controller="TrackingController as trackingCtrl">
+<div ng-show="loader.loading">Loading</div>
+	<form class="login-form"   ">
+	<!-- ng-submit="trackingCtrl.postForm() -->
+		<h3 align="center">
+			<font face="verdana" size="6">{{IsAdd ? 'Add Tracking Number Validation' : 'Edit Tracking Number Validation'}}</font>
+		</h3>
+		
+		
+<div class="form-group">
+<label for="carrierCode" >Carrier Code *</label> 
+  <select  ng-disabled="!IsAdd" class="form-control"  id="carrierCode"  required ng-model="trackingCtrl.inputData.carrierCode">
+	<option value="" default selected disabled="disabled">CarrierCodes</option>
+  <option  ng-repeat="carrierCode in CarrierCodes" ng-value="{{carrierCode.code}}">{{carrierCode.code}}</option>
+  </select>
+  </div>
+  
+		
+		<div class="form-group">
+		<label for="mask" >Mask *</label> 
+		<input type="text" id="mask" class="form-control" placeholder="mask" ng-model="trackingCtrl.inputData.mask" required maxlength="255">	
+		<span ng-show="login-form.passwrod.$error.required" ng-style="{color:'red'}"> required .</span>		
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" ng-hide="!IsAdd" ng-click="addTrackingAndSave()">save</button>
+		<button class="btn btn-lg btn-primary btn-block" ng-hide="IsAdd" ng-click="editTrackingAndSave()">save</button>
+         <a id="back" class="btn btn-lg btn-primary btn-block" ng-href="#/ManageConfig/Tracking">Back</a>
+	</form>
+</div>

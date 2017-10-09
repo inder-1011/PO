@@ -1,0 +1,31 @@
+<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="WelcomeController as wctrl">
+   <div class="header">
+    <div class="container" style="background-color: #3C54A4">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/Title">PITNEY BOWES</a>
+        </div>
+
+        <div>
+            <h3 align="right" ng-show="isUserLoggedIn">
+				<font face="verdana" size="2" style="color: aqua;">Welcome {{loginUser}}&nbsp;|&nbsp;<a href="#/" ng-show="loginUser!=null"   ng-click="logout()">Logout</a></font>
+			</h3>
+        </div>
+    </div>
+    </div>
+</nav>  -->
+<header>
+
+ <div>
+		<a class="navbar-brand" style="font-size: 30px;color:white;" href="#/Title">PITNEY BOWES</a>
+	</div>
+	<div>
+		<h3 align="right" ng-show="isUserLoggedIn" style=margin-top: 0px>
+			<font face="verdana" style="color: white; font-size: initial;">
+			Welcome {{loginUser}}&nbsp;|&nbsp;
+			<a href="#/"
+				ng-show="loginUser!=null" ng-click="logout()"  style="color: white; font-size: initial;">Logout</a>
+				</font>
+		</h3>
+	</div>
+</header>
+

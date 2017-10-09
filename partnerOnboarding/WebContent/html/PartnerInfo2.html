@@ -1,0 +1,36 @@
+    <body>
+    <div class="container" ng-controller="PostController3 as postCtrl">
+      <form class="login-form" ng-submit="postCtrl.postForm()">
+        <h3 align="center">FILE TRANSFER DETAILS</h3>
+        <label for="host" class="sr-only">Host</label>
+        <input type="text" id="host" class="form-control" placeholder="Host" required autofocus ng-model="postCtrl.inputData.host">
+        
+		<label for="port" class="sr-only">Port</label>
+        <input type="text" id="port" class="form-control" placeholder="Port" required ng-model="postCtrl.inputData.port">
+		
+		<label for="protocol" class="sr-only">protocol</label>
+		<select id="protocol" class="form-control"  required ng-model="postCtrl.inputData.protocol">
+			<option value=""  selected disabled="disabled">Protocol</option>
+			<option ng-value="SFTP" value="SFTP">SFTP</option>
+			<option ng-value="FTP" value="FTP">FTP</option>
+			<option ng-value="SCP" value="SCP">SCP</option>
+		</select>
+ 
+		<label for="userName" class="sr-only">User Name </label>
+        <input type="text" id="userName" class="form-control" placeholder="User Name" required ng-model="postCtrl.inputData.userName">
+		
+		 <label for="password" class="sr-only">password</label>
+        <input type="password" id="password" class="form-control" placeholder="password" required ng-model="postCtrl.inputData.password">
+		
+
+		<label for="active" class="sr-only">Active</label>
+		<select  id="active" class="form-control" required ng-model="postCtrl.inputData.active">
+			<option value=""  selected disabled="disabled">Active</option>
+			<option ng-value="true" value="true">TRUE</option>
+			<option ng-value="false" value="false">FALSE</option>
+		</select>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >Save And Exit</button>
+		
+      </form>
+    </div> 
+</body>

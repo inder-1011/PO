@@ -1,0 +1,5 @@
+database.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+database.url=jdbc:sqlserver://bnbinint2sdb1;database=PartnerConfiguration;
+database.user=bnbuser
+database.password=bnbuser
+hibernate.show_sql=true	

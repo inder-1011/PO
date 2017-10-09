@@ -1,0 +1,15 @@
+<div class="container" ng-controller="FlowSelectionController">
+	<form class="login-form" >
+		<h3 align="right"><font face="verdana" size="2">&nbsp;</font></h3>
+        <div ng-if="service=='OD'">
+	    <a href='#/NewPartner' class="btn btn-lg btn-primary btn-block" type="submit">Create New Partner</a>
+		<a href='#/PartnerList' class="btn btn-lg btn-primary btn-block" type="submit">Manage Partner</a>
+		<a href='#/AddFieldFormats' class="btn btn-lg btn-primary btn-block" type="submit">Add Partner Field Formats</a>
+		<a href='#/FieldFormatList' class="btn btn-lg btn-primary btn-block" type="submit">Manage Partner Field Formats</a>
+		</div>
+         <div ng-if="service=='EBT'">
+	    <a href='#/PartnerInfo2' class="btn btn-lg btn-primary btn-block" type="submit">Create File Details</a>
+		<a href='#/PartnerList' class="btn btn-lg btn-primary btn-block" type="submit">Manage File Details</a>
+		</div>
+	</form>
+</div>
