@@ -9,7 +9,7 @@
 		<spring.security.version>3.2.5.RELEASE</spring.security.version>
 	</properties>
 	<build>
-		<finalName>partnerOnboarding</finalName>
+		<finalName>partnerOnboarding1</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 		
